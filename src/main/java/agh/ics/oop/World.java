@@ -1,9 +1,25 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.MoveDirection;
+import agh.ics.oop.model.OptionParser;
+import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.MapDirection;
 
 public class World {
     public static void main(String[] arg) {
+
+        Vector2d position1 = new Vector2d(1,2);
+        System.out.println(position1);
+        Vector2d position2 = new Vector2d(-2,1);
+        System.out.println(position2);
+        System.out.println(position1.add(position2));
+
+        MapDirection kierunek = MapDirection.NORTH;
+        System.out.println(kierunek);
+        System.out.println(kierunek.next());
+        System.out.println(kierunek.previous());
+        System.out.println(kierunek.toUnitVector());
+
         System.out.println("system wystartowal");
         for (String s : arg) {
             System.out.print(s+" ");
