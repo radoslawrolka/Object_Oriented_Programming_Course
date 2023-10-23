@@ -28,7 +28,9 @@ public class World {
         }
         System.out.println();
         List<MoveDirection> moves = OptionParser.parse(arg);
-        run(moves);
+        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
+        Simulation simulation = new Simulation(moves, positions);
+        simulation.run();
         System.out.println("system zakonczyl dzialanie");
     }
 
