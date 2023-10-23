@@ -3,19 +3,19 @@ package agh.ics.oop.model;
 import agh.ics.oop.model.MoveDirection;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class OptionParser {
-    public static MoveDirection[] parse(String[] args) {
-        MoveDirection[] directions = new MoveDirection[args.length];
-        int i = 0;
-        for (String s : args) {
-            switch (s) {
-                case "f" -> directions[i++] = MoveDirection.FORWARD;
-                case "b" -> directions[i++] = MoveDirection.BACKWARD;
-                case "r" -> directions[i++] = MoveDirection.RIGHT;
-                case "l" -> directions[i++] = MoveDirection.LEFT;
+    public static List<MoveDirection> parse(String[] args) {
+        List<MoveDirection> directions = new java.util.ArrayList<>();
+        for (String arg : args) {
+            switch (arg) {
+                case "f" -> directions.add(MoveDirection.FORWARD);
+                case "b" -> directions.add(MoveDirection.BACKWARD);
+                case "r" -> directions.add(MoveDirection.RIGHT);
+                case "l" -> directions.add(MoveDirection.LEFT);
             }
         }
-        return Arrays.copyOfRange(directions, 0, i);
+        return directions;
     }
 }

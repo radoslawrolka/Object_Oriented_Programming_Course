@@ -3,6 +3,7 @@ package agh.ics.oop;
 import agh.ics.oop.model.*;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 public class World {
     public static void main(String[] arg) {
@@ -26,12 +27,12 @@ public class World {
             System.out.print(s+" ");
         }
         System.out.println();
-        MoveDirection[] moves = OptionParser.parse(arg);
+        List<MoveDirection> moves = OptionParser.parse(arg);
         run(moves);
         System.out.println("system zakonczyl dzialanie");
     }
 
-    public static void run(MoveDirection[] moves) {
+    public static void run(List<MoveDirection> moves) {
 
         for (MoveDirection m : moves) {
             switch (m) {
