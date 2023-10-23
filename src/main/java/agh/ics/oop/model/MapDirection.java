@@ -2,9 +2,9 @@ package agh.ics.oop.model;
 
 public enum MapDirection {
     NORTH,
+    EAST,
     SOUTH,
-    WEST,
-    EAST;
+    WEST;
 
     public String toString() {
         return switch (this) {
@@ -16,21 +16,13 @@ public enum MapDirection {
     }
 
     public MapDirection next() {
-        return switch (this) {
-            case NORTH -> EAST;
-            case SOUTH -> WEST;
-            case WEST -> NORTH;
-            case EAST -> SOUTH;
-        };
+        int nextOrdinal = (this.ordinal() + 1) % MapDirection.values().length;
+        return MapDirection.values()[nextOrdinal];
     }
 
     public MapDirection previous() {
-        return switch (this) {
-            case NORTH -> WEST;
-            case SOUTH -> EAST;
-            case WEST -> SOUTH;
-            case EAST -> NORTH;
-        };
+        int nextOrdinal = (this.ordinal() + 3) % MapDirection.values().length;
+        return MapDirection.values()[nextOrdinal];
     }
 
     public Vector2d toUnitVector() {
