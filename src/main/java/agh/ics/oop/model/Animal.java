@@ -1,11 +1,8 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.MapDirection;
-import agh.ics.oop.model.Vector2d;
-
 public class Animal {
-    MapDirection orientation;
-    Vector2d position;
+    private MapDirection orientation;
+    private Vector2d position;
 
     public Animal() {
         this.orientation = MapDirection.NORTH;
