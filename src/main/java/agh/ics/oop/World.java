@@ -19,7 +19,7 @@ public class World {
         System.out.println(kierunek.previous());
         System.out.println(kierunek.toUnitVector());
 
-        System.out.println(new Animal().toString());
+        System.out.println(new Animal());
 
         System.out.println("system wystartowal");
         for (String s : arg) {
