@@ -1,9 +1,8 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.OptionParser;
-import agh.ics.oop.model.Vector2d;
-import agh.ics.oop.model.MapDirection;
+import agh.ics.oop.model.*;
+
+import java.sql.SQLOutput;
 
 public class World {
     public static void main(String[] arg) {
@@ -19,6 +18,8 @@ public class World {
         System.out.println(kierunek.next());
         System.out.println(kierunek.previous());
         System.out.println(kierunek.toUnitVector());
+
+        System.out.println(new Animal().toString());
 
         System.out.println("system wystartowal");
         for (String s : arg) {
