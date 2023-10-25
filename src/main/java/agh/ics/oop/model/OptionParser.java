@@ -1,8 +1,5 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.MoveDirection;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class OptionParser {

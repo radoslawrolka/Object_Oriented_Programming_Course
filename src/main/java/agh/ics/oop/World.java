@@ -2,7 +2,6 @@ package agh.ics.oop;
 
 import agh.ics.oop.model.*;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class World {

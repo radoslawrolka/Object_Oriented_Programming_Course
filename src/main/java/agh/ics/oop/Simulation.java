@@ -7,8 +7,8 @@ import agh.ics.oop.model.Vector2d;
 import java.util.List;
 
 public class Simulation {
-    private List<Animal> animals = new java.util.ArrayList<>();
-    private List<MoveDirection> moves;
+    private final List<Animal> animals = new java.util.ArrayList<>();
+    private final List<MoveDirection> moves;
 
     public Simulation(List<MoveDirection> moves, List<Vector2d> positions) {
         this.moves = moves;
@@ -28,8 +28,9 @@ public class Simulation {
     public void run() {
         int i = 0;
         for (MoveDirection move : this.moves) {
+            int index = i % this.animals.size();
             this.animals.get(i % this.animals.size()).move(move);
-            System.out.println("Zwierze "+(i%this.animals.size())+":"+this.animals.get(i % this.animals.size()));
+            System.out.println("Zwierze "+index+":"+this.animals.get(index));
             i++;
         }
     }
