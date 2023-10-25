@@ -17,6 +17,14 @@ public class Simulation {
         }
     }
 
+    public List<Animal> getAnimals() {
+        return this.animals;
+    }
+
+    public List<MoveDirection> getMoves() {
+        return this.moves;
+    }
+
     public void run() {
         int i = 0;
         for (MoveDirection move : this.moves) {
