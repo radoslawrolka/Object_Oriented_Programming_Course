@@ -28,7 +28,8 @@ public class World {
         System.out.println();
         List<MoveDirection> moves = OptionParser.parse(arg);
         List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-        Simulation simulation = new Simulation(moves, positions);
+        WorldMap map = new RectangularMap(5, 4);
+        Simulation simulation = new Simulation(moves, positions, map);
         simulation.run();
         System.out.println("system zakonczyl dzialanie");
     }
