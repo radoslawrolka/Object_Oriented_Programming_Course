@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Simulation {
-    private final List<Animal> animals = new java.util.ArrayList<>();
+    private final List<Animal> animals = new java.util.LinkedList<>();
     private final List<MoveDirection> moves;
 
     public Simulation(List<MoveDirection> moves, List<Vector2d> positions) {
