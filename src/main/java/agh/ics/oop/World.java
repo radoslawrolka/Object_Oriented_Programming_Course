@@ -1,9 +1,8 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.OptionParser;
-import agh.ics.oop.model.Vector2d;
-import agh.ics.oop.model.MapDirection;
+import agh.ics.oop.model.*;
+
+import java.util.List;
 
 public class World {
     public static void main(String[] arg) {
@@ -20,17 +19,21 @@ public class World {
         System.out.println(kierunek.previous());
         System.out.println(kierunek.toUnitVector());
 
+        System.out.println(new Animal());
+
         System.out.println("system wystartowal");
         for (String s : arg) {
             System.out.print(s+" ");
         }
         System.out.println();
-        MoveDirection[] moves = OptionParser.parse(arg);
-        run(moves);
+        List<MoveDirection> moves = OptionParser.parse(arg);
+        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
+        Simulation simulation = new Simulation(moves, positions);
+        simulation.run();
         System.out.println("system zakonczyl dzialanie");
     }
 
-    public static void run(MoveDirection[] moves) {
+    public static void run(List<MoveDirection> moves) {
 
         for (MoveDirection m : moves) {
             switch (m) {
