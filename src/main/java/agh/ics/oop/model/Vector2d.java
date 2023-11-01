@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import java.util.Objects;
+
 public class Vector2d {
     private final int x;
     private final int y;
@@ -60,9 +62,6 @@ public class Vector2d {
 
     @Override
     public int hashCode() {
-        int hash = 19;
-        hash += this.x * 31;
-        hash += this.y * 39;
-        return hash;
+        return Objects.hash(this.x, this.y);
     }
 }
