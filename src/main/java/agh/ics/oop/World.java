@@ -35,16 +35,4 @@ public class World {
         simulation.run();
         System.out.println("system zakonczyl dzialanie");
     }
-
-    public static void run(List<MoveDirection> moves) {
-
-        for (MoveDirection m : moves) {
-            switch (m) {
-                case FORWARD-> System.out.println("do przodu");
-                case BACKWARD-> System.out.println("do tylu");
-                case RIGHT-> System.out.println("w prawo");
-                case LEFT-> System.out.println("w lewo");
-            }
-        }
-    }
 }
