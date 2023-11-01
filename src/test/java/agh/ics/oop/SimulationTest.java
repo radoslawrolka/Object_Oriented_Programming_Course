@@ -16,7 +16,7 @@ public class SimulationTest {
     public void OrientTest() {
         String[] args = new String[]{"r", "l", "r", "l", "r", "l"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map, width, height);
+        Simulation simulation = new Simulation(moves, positions, map);
 
         simulation.run();
 
@@ -28,7 +28,7 @@ public class SimulationTest {
     public void MoveTest() {
         String[] args = new String[]{"b", "f", "b", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map, width, height);
+        Simulation simulation = new Simulation(moves, positions, map);
 
         simulation.run();
 
@@ -40,7 +40,7 @@ public class SimulationTest {
     public void BorderTest() {
         String[] args = new String[]{"f", "l", "f", "f", "f", "f", "f", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map, width, height);
+        Simulation simulation = new Simulation(moves, positions, map);
 
         simulation.run();
 
@@ -52,7 +52,7 @@ public class SimulationTest {
     public void ParseTest() {
         String[] args = new String[]{"f", "l", "r", "x", "b", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map, width, height);
+        Simulation simulation = new Simulation(moves, positions, map);
 
         assertEquals(simulation.getMoves(), List.of(MoveDirection.FORWARD, MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.FORWARD));
     }

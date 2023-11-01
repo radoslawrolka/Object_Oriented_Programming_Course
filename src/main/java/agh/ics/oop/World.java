@@ -31,7 +31,7 @@ public class World {
         int w = 5;
         int h = 4;
         WorldMap map = new RectangularMap(w, h);
-        Simulation simulation = new Simulation(moves, positions, map, w, h);
+        Simulation simulation = new Simulation(moves, positions, map);
         simulation.run();
         System.out.println("system zakonczyl dzialanie");
     }
