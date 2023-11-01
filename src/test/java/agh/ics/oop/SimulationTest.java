@@ -8,13 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimulationTest {
     public final List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(0, 0));
-    public final WorldMap map = new RectangularMap(4, 4);
+    public final int width = 4;
+    public final int height = 4;
+    public final WorldMap map = new RectangularMap(width, height);
 
     @Test
     public void OrientTest() {
         String[] args = new String[]{"r", "l", "r", "l", "r", "l"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map);
+        Simulation simulation = new Simulation(moves, positions, map, width, height);
 
         simulation.run();
 
@@ -26,7 +28,7 @@ public class SimulationTest {
     public void MoveTest() {
         String[] args = new String[]{"b", "f", "b", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map);
+        Simulation simulation = new Simulation(moves, positions, map, width, height);
 
         simulation.run();
 
@@ -38,7 +40,7 @@ public class SimulationTest {
     public void BorderTest() {
         String[] args = new String[]{"f", "l", "f", "f", "f", "f", "f", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map);
+        Simulation simulation = new Simulation(moves, positions, map, width, height);
 
         simulation.run();
 
@@ -50,7 +52,7 @@ public class SimulationTest {
     public void ParseTest() {
         String[] args = new String[]{"f", "l", "r", "x", "b", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
-        Simulation simulation = new Simulation(moves, positions, map);
+        Simulation simulation = new Simulation(moves, positions, map, width, height);
 
         assertEquals(simulation.getMoves(), List.of(MoveDirection.FORWARD, MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.FORWARD));
     }
