@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RectangularMap implements WorldMap, MoveValidator {
-    Map<Vector2d, Animal> animals = new HashMap<>();
+    private Map<Vector2d, Animal> animals = new HashMap<>();
     private final Vector2d lowerLeft;
     private final Vector2d upperRight;
 
