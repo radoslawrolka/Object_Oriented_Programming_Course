@@ -6,7 +6,7 @@ package agh.ics.oop.model;
  *
  * @author apohllo, idzik
  */
-public interface WorldMap<T, P> extends MoveValidator {
+public interface WorldMap<T, P> extends MoveValidator<P> {
 
     /**
      * Place a animal on the map.
