@@ -17,7 +17,7 @@ public class RectangularMapTest {
 
     @Test
     public void placeTest() {
-        WorldMap<Animal, Vector2d> map = new RectangularMap(width, height);
+        AbstractWorldMap map = new RectangularMap(width, height);
         for (Animal animal : animals) {
             map.place(animal);
         }
@@ -29,7 +29,7 @@ public class RectangularMapTest {
 
     @Test
     public void canMoveTo() {
-        WorldMap<Animal, Vector2d> map = new RectangularMap(width, height);
+        AbstractWorldMap map = new RectangularMap(width, height);
         for (Animal animal : animals) {
             map.place(animal);
         }
@@ -42,7 +42,7 @@ public class RectangularMapTest {
 
     @Test
     public void isOccupiedTest() {
-        WorldMap<Animal, Vector2d> map = new RectangularMap(width, height);
+        AbstractWorldMap map = new RectangularMap(width, height);
         for (Animal animal : animals2) {
             map.place(animal);
         }
@@ -54,7 +54,7 @@ public class RectangularMapTest {
 
     @Test
     public void objectAtTest() {
-        WorldMap<Animal, Vector2d> map = new RectangularMap(width, height);
+        AbstractWorldMap map = new RectangularMap(width, height);
         for (Animal animal : animals2) {
             map.place(animal);
         }
@@ -66,7 +66,7 @@ public class RectangularMapTest {
 
     @Test
     public void moveTest() {
-        WorldMap<Animal, Vector2d> map = new RectangularMap(width, height);
+        AbstractWorldMap map = new RectangularMap(width, height);
         for (Animal animal : animals) {
             map.place(animal);
         }
@@ -80,6 +80,6 @@ public class RectangularMapTest {
         map.move(animals[3], MoveDirection.FORWARD);
         map.move(animals[3], MoveDirection.FORWARD);
         assertEquals(map.objectAt(new Vector2d(5, 8)), animals[3]);
-        assertEquals(map.objectAt(new Vector2d(5, 6)), null);
+        assertNull(map.objectAt(new Vector2d(5, 6)));
     }
 }

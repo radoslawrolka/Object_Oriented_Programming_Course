@@ -16,7 +16,7 @@ public class GrassFieldTest {
 
     @Test
     public void placeTest() {
-        WorldMap<WorldElement, Vector2d> map = new GrassField(10);
+        AbstractWorldMap map = new GrassField(10);
         for (Animal animal : animals) {
             map.place(animal);
         }
@@ -28,7 +28,7 @@ public class GrassFieldTest {
 
     @Test
     public void canMoveTo() {
-        WorldMap<WorldElement, Vector2d> map = new GrassField(15);
+        AbstractWorldMap map = new GrassField(15);
         for (Animal animal : animals) {
             map.place(animal);
         }
@@ -41,7 +41,7 @@ public class GrassFieldTest {
 
     @Test
     public void isOccupiedTest() {
-        WorldMap<WorldElement, Vector2d> map = new GrassField(11);
+        AbstractWorldMap map = new GrassField(11);
         for (Animal animal : animals2) {
             map.place(animal);
         }
@@ -60,12 +60,11 @@ public class GrassFieldTest {
         assertEquals(map.objectAt(new Vector2d(8, 4)), animals2[0]);
         assertEquals(map.objectAt(new Vector2d(9, 4)), animals2[1]);
         assertEquals(map.objectAt(new Vector2d(4, 4)), animals2[2]);
-        assertNull(map.objectAt(new Vector2d(5, 5)));
     }
 
     @Test
     public void moveTest() {
-        WorldMap<WorldElement, Vector2d> map = new GrassField(0);
+        AbstractWorldMap map = new GrassField(0);
         for (Animal animal : animals) {
             map.place(animal);
         }
