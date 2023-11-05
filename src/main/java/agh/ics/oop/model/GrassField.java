@@ -8,44 +8,18 @@ import java.util.Objects;
 
 import static java.lang.Math.sqrt;
 
-public class GrassField implements WorldMap<WorldElement, Vector2d> {
+public class GrassField extends AbstractWorldMap {
     private final int grassNumber;
     private final Map<Vector2d, Grass> grasses = new HashMap<>();
-    private final Map<Vector2d, Animal> animals = new HashMap<>();
-    private final Vector2d lowerLeft;
-    private final Vector2d upperRight;
 
     public GrassField(int grassNumber) {
         this.grassNumber = grassNumber;
-        this.lowerLeft = new Vector2d(0, 0);
-        this.upperRight = new Vector2d((int)sqrt(grassNumber*10), (int)sqrt(grassNumber*10));
 
-        randomPositionGenerator generator = new randomPositionGenerator(grassNumber, lowerLeft, upperRight);
+        randomPositionGenerator generator = new randomPositionGenerator(grassNumber, new Vector2d(0, 0), new Vector2d((int)sqrt(grassNumber*10), (int)sqrt(grassNumber*10)));
         for(Vector2d grassPosition : generator) {
             System.out.println(grassPosition);
             grasses.put(grassPosition, new Grass(grassPosition));
         }
-    }
-
-    @Override
-    public boolean canMoveTo(Vector2d position) {
-        return !isOccupied(position);
-    }
-
-    @Override
-    public boolean place(WorldElement object) {
-        if (canMoveTo(object.getPosition())) {
-            if(object instanceof Animal) {
-                animals.put(object.getPosition(), (Animal) object);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        return objectAt(position) != null;
     }
 
     @Override
@@ -54,19 +28,6 @@ public class GrassField implements WorldMap<WorldElement, Vector2d> {
             return animals.get(position);
         }
         return grasses.get(position);
-    }
-
-    @Override
-    public void move(WorldElement object, MoveDirection direction) {
-        Vector2d oldPosition = object.getPosition();
-        if (object instanceof Animal) {
-            ((Animal) object).move(this, direction);
-            Vector2d newPosition = object.getPosition();
-            if (oldPosition != newPosition) {
-                animals.remove(oldPosition);
-                animals.put(newPosition, (Animal) object);
-            }
-        }
     }
 
     @Override
