@@ -16,9 +16,9 @@ public class randomPositionGenerator implements Iterable<Vector2d> {
 
     @Override
     public Iterator<Vector2d> iterator () {
-        return new Iterator<Vector2d>() {
+        return new Iterator<>() {
             private int counter = 0;
-            private List<Vector2d> availablePositions = generateAllPositions();
+            private final List<Vector2d> availablePositions = generateAllPositions();
 
             @Override
             public boolean hasNext () {
