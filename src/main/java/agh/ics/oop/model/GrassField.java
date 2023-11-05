@@ -13,6 +13,7 @@ public class GrassField extends AbstractWorldMap {
     private final Map<Vector2d, Grass> grasses = new HashMap<>();
 
     public GrassField(int grassNumber) {
+        super();
         this.grassNumber = grassNumber;
 
         randomPositionGenerator generator = new randomPositionGenerator(grassNumber, new Vector2d(0, 0), new Vector2d((int)sqrt(grassNumber*10), (int)sqrt(grassNumber*10)));
@@ -50,9 +51,8 @@ public class GrassField extends AbstractWorldMap {
     public boolean equals(Object other) {
         if (this == other)
             return true;
-        if (!(other instanceof GrassField))
+        if (!(other instanceof GrassField that))
             return false;
-        GrassField that = (GrassField) other;
         return this.grassNumber == that.grassNumber && this.grasses.equals(that.grasses);
     }
 }
