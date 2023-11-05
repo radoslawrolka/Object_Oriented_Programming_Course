@@ -1,6 +1,8 @@
 package agh.ics.oop.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
@@ -43,5 +45,11 @@ public class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
                 animals.put(newPosition, (Animal) object);
             }
         }
+    }
+
+    @Override
+    public List<WorldElement> getElements() {
+        List<WorldElement> elements = new ArrayList<>(animals.values());
+        return elements;
     }
 }

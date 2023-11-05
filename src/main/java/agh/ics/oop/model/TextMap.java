@@ -49,4 +49,9 @@ public class TextMap implements WorldMap<String, Integer> {
             Collections.swap(map, index, index - 1);
         }
     }
+
+    @Override
+    public List<String> getElements() {
+        return map;
+    }
 }

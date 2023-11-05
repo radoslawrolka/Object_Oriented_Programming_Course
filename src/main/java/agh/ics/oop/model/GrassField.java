@@ -2,9 +2,7 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.util.MapVisualizer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static java.lang.Math.sqrt;
 
@@ -54,5 +52,12 @@ public class GrassField extends AbstractWorldMap {
         if (!(other instanceof GrassField that))
             return false;
         return this.grassNumber == that.grassNumber && this.grasses.equals(that.grasses);
+    }
+
+    @Override
+    public List<WorldElement> getElements() {
+        List<WorldElement> elements = new ArrayList<>(animals.values());
+        elements.addAll(grasses.values());
+        return elements;
     }
 }
