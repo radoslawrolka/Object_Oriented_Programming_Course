@@ -28,20 +28,11 @@ public class World {
         System.out.println();
         List<MoveDirection> moves = OptionParser.parse(arg);
         List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-        Simulation simulation = new Simulation(moves, positions);
+        int w = 5;
+        int h = 4;
+        WorldMap map = new RectangularMap(w, h);
+        Simulation simulation = new Simulation(moves, positions, map);
         simulation.run();
         System.out.println("system zakonczyl dzialanie");
-    }
-
-    public static void run(List<MoveDirection> moves) {
-
-        for (MoveDirection m : moves) {
-            switch (m) {
-                case FORWARD-> System.out.println("do przodu");
-                case BACKWARD-> System.out.println("do tylu");
-                case RIGHT-> System.out.println("w prawo");
-                case LEFT-> System.out.println("w lewo");
-            }
-        }
     }
 }
