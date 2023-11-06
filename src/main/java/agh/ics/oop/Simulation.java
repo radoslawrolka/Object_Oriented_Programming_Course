@@ -15,7 +15,9 @@ public class Simulation {
         this.map = map;
         for (Vector2d position : positions) {
             this.animals.add(new Animal(position));
-            map.place(this.animals.get(this.animals.size()-1));
+            if (!map.place(this.animals.get(this.animals.size()-1))) {
+                this.animals.remove(this.animals.size()-1);
+            }
         }
     }
 
