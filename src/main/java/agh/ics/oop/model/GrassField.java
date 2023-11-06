@@ -41,20 +41,6 @@ public class GrassField extends AbstractWorldMap {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(grassNumber, grasses);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other)
-            return true;
-        if (!(other instanceof GrassField that))
-            return false;
-        return this.grassNumber == that.grassNumber && this.grasses.equals(that.grasses);
-    }
-
-    @Override
     public List<WorldElement> getElements() {
         List<WorldElement> elements = new ArrayList<>(animals.values());
         elements.addAll(grasses.values());
