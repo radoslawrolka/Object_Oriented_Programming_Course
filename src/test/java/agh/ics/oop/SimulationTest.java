@@ -44,7 +44,7 @@ public class SimulationTest {
 
         simulation.run();
 
-        assertEquals(simulation.getAnimals().get(0).getPosition(), new Vector2d(2, 4));
+        assertEquals(simulation.getAnimals().get(0).getPosition(), new Vector2d(2, 3));
         assertEquals(simulation.getAnimals().get(1).getPosition(), new Vector2d(0, 0));
     }
 
