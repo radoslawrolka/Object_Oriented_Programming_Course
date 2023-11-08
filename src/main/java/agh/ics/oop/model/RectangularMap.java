@@ -9,7 +9,7 @@ public class RectangularMap extends AbstractWorldMap{
     public RectangularMap(int width, int height) {
         super();
         this.lowerLeft = new Vector2d(0, 0);
-        this.upperRight = new Vector2d(width, height);
+        this.upperRight = new Vector2d(width-1, height-1);
     }
 
     @Override
@@ -17,7 +17,8 @@ public class RectangularMap extends AbstractWorldMap{
         return position.follows(lowerLeft) && position.precedes(upperRight) && super.canMoveTo(position);
     }
 
-    public String toString() {
-        return new MapVisualizer(this).draw(lowerLeft, upperRight);
+    @Override
+    public Boundary getCurrentBounds() {
+        return new Boundary(lowerLeft, upperRight);
     }
 }
