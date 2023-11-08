@@ -1,11 +1,13 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.util.MapVisualizer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
+public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
     protected final Map<Vector2d, Animal> animals = new HashMap<>();
 
     @Override
@@ -56,5 +58,13 @@ public class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
     public List<WorldElement> getElements() {
         List<WorldElement> elements = new ArrayList<>(animals.values());
         return elements;
+    }
+
+    public abstract Boundary getCurrentBounds();
+
+    @Override
+    public String toString() {
+        Boundary bounds = getCurrentBounds();
+        return new MapVisualizer(this).draw(bounds.lowerLeft(), bounds.upperRight());
     }
 }
