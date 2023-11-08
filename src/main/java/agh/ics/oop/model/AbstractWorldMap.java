@@ -20,13 +20,18 @@ public class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
 
     @Override
     public boolean place(WorldElement object) {
-        if (canMoveTo(object.getPosition())) {
-            if(object instanceof Animal) {
-                animals.put(object.getPosition(), (Animal) object);
+        try {
+            if (canMoveTo(object.getPosition())) {
+                if (object instanceof Animal) {
+                    animals.put(object.getPosition(), (Animal) object);
+                }
+                return true;
             }
-            return true;
+            throw new PositionAlreadyOccupiedException(object.getPosition());
+        } catch (PositionAlreadyOccupiedException e) {
+            System.err.println("Błąd: " + e.getMessage());
+            return false;
         }
-        return false;
     }
 
     @Override
