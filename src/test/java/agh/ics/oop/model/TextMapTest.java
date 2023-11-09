@@ -3,7 +3,7 @@ package agh.ics.oop.model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 public class TextMapTest {
     String[] strings = {"Ala", "ma", "sowoniedźwiedzia"};
     String[] strings2 = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
@@ -83,3 +83,4 @@ public class TextMapTest {
         assertEquals(map.objectAt(2), strings[1]);
     }
 }
+ */

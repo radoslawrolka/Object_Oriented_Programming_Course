@@ -8,6 +8,8 @@ Mapa nie ma górnej granicy - dokładanie nowego napisu zawsze wstawia go na kon
 Przemieszczanie napisu jest możliwe jedynie w obecnych granicach <0, N> (gdzie N - liczba elementów w mapie). Przesuwany napis zamienia się miejscami z sąsiadem - w przypadku ruchu "na wschód" z sąsiadem z prawej (o indeksie o 1 wyższym), a "na zachód" z lewej. Np. dla mapy ["Ala", "ma", "sowoniedźwiedzia"] przesunięcie napisu "ma" na wschód powinno dać efekt: ["Ala", "sowoniedźwiedzia", "ma"]. Dalsze przemieszczanie wyrazu "ma" w prawo nie jest już możliwe.
 Napis może się przemieszczać do przodu i tyłu FORWARD/BACKWARD tylko w orientacjach EAST/WEST, w pozostałych przypadkach ruch jest ignorowany.
  */
+
+/*
 public class TextMap implements WorldMap<String, Integer> {
     private List<String> map = new java.util.LinkedList<>();
     private int length = 0;
@@ -55,3 +57,4 @@ public class TextMap implements WorldMap<String, Integer> {
         return map;
     }
 }
+*/
