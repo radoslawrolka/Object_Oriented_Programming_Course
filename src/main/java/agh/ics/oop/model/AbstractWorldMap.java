@@ -31,7 +31,10 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
                 }
                 return true;
             }
-            throw new PositionAlreadyOccupiedException(object.getPosition());
+            else {
+                throw new PositionAlreadyOccupiedException(object.getPosition());
+            }
+
         } catch (PositionAlreadyOccupiedException e) {
             System.err.println("Błąd: " + e.getMessage());
             return false;
@@ -47,12 +50,16 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     public void move(WorldElement object, MoveDirection direction) {
         Vector2d oldPosition = object.getPosition();
         if (object instanceof Animal) {
+            MapDirection oldOrientation =  ((Animal) object).getOrientation();
             ((Animal) object).move(this, direction);
             Vector2d newPosition = object.getPosition();
             if (oldPosition != newPosition) {
                 animals.remove(oldPosition);
                 animals.put(newPosition, (Animal) object);
                 notifyObservers("Zwierzę przemieściło się z " + oldPosition + " na " + newPosition);
+            }
+            else if (oldOrientation != ((Animal) object).getOrientation()) {
+                notifyObservers("Zwierzę zmieniło orientację z " + oldOrientation + " na " + ((Animal) object).getOrientation() + " na pozycji " + object.getPosition());
             }
         }
     }
