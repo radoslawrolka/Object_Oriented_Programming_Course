@@ -9,6 +9,7 @@ import java.util.Map;
 
 public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
     protected final Map<Vector2d, Animal> animals = new HashMap<>();
+    protected List<MapChangeListener> observers = new ArrayList<>();
 
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -26,6 +27,7 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
             if (canMoveTo(object.getPosition())) {
                 if (object instanceof Animal) {
                     animals.put(object.getPosition(), (Animal) object);
+                    notifyObservers("Dodano zwierzę na pozycji " + object.getPosition());
                 }
                 return true;
             }
@@ -50,6 +52,7 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
             if (oldPosition != newPosition) {
                 animals.remove(oldPosition);
                 animals.put(newPosition, (Animal) object);
+                notifyObservers("Zwierzę przemieściło się z " + oldPosition + " na " + newPosition);
             }
         }
     }
@@ -66,5 +69,19 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     public String toString() {
         Boundary bounds = getCurrentBounds();
         return new MapVisualizer(this).draw(bounds.lowerLeft(), bounds.upperRight());
+    }
+
+    public void addObserver(MapChangeListener observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(MapChangeListener observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(String message) {
+        for (MapChangeListener observer : observers) {
+            observer.mapChanged(this, message);
+        }
     }
 }
