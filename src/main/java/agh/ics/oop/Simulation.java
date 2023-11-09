@@ -30,14 +30,11 @@ public class Simulation {
     }
 
     public void run() {
-        System.out.println(map);
         int i = 0;
         for (MoveDirection move : this.moves) {
             int index = i % this.animals.size();
             map.move(this.animals.get(index), move);
-            System.out.println("Zwierze "+index+":"+this.animals.get(index));
             i++;
-            System.out.println(map);
         }
     }
 }
