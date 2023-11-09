@@ -8,9 +8,9 @@ import java.util.List;
 public class Simulation {
     private final List<Animal> animals = new java.util.LinkedList<>();
     private final List<MoveDirection> moves;
-    private final WorldMap<Animal, Vector2d> map;
+    private final WorldMap map;
 
-    public Simulation(List<MoveDirection> moves, List<Vector2d> positions, WorldMap<Animal, Vector2d> map) {
+    public Simulation(List<MoveDirection> moves, List<Vector2d> positions, WorldMap map) {
         this.moves = moves;
         this.map = map;
         for (Vector2d position : positions) {
