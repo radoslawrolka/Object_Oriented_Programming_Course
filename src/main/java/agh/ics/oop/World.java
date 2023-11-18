@@ -6,33 +6,28 @@ import java.util.List;
 
 public class World {
     public static void main(String[] arg) {
-
-        Vector2d position1 = new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
-
-        MapDirection kierunek = MapDirection.NORTH;
-        System.out.println(kierunek);
-        System.out.println(kierunek.next());
-        System.out.println(kierunek.previous());
-        System.out.println(kierunek.toUnitVector());
-
-        System.out.println(new Animal());
-
         System.out.println("system wystartowal");
         for (String s : arg) {
             System.out.print(s+" ");
         }
         System.out.println();
-        List<MoveDirection> moves = OptionParser.parse(arg);
-        List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,3), new Vector2d(2,2));
-        WorldMap<WorldElement, Vector2d> map = new GrassField(10);
-        ConsoleMapDisplay display = new ConsoleMapDisplay();
-        map.addObserver(display);
-        Simulation simulation = new Simulation(moves, positions, map);
-        simulation.run();
+        //List<MoveDirection> moves = OptionParser.parse(arg);
+        String[] arg1 = {"f", "f", "r", "f", "f", "f", "f", "f", "f", "f", "f", "f"};
+        String[] arg2 = {"f", "b", "r", "f", "f", "l", "f", "r", "l", "f", "f", "f"};
+        List<MoveDirection> moves1 = OptionParser.parse(arg1);
+        List<MoveDirection> moves2 = OptionParser.parse(arg2);
+        List<Vector2d> positions1 = List.of(new Vector2d(2,2), new Vector2d(8,8), new Vector2d(2,2));
+        List<Vector2d> positions2 = List.of(new Vector2d(3,3), new Vector2d(1,4), new Vector2d(2,2));
+        WorldMap<WorldElement, Vector2d> map1 = new GrassField(10);
+        WorldMap<WorldElement, Vector2d> map2 = new RectangularMap(10, 5);
+        ConsoleMapDisplay display1 = new ConsoleMapDisplay();
+        ConsoleMapDisplay display2 = new ConsoleMapDisplay();
+        map1.addObserver(display1);
+        map2.addObserver(display2);
+        Simulation simulation1 = new Simulation(moves1, positions1, map1);
+        Simulation simulation2 = new Simulation(moves2, positions2, map2);
+        SimulationEngine engine = new SimulationEngine(List.of(simulation1, simulation2));
+        engine.runASync();
         System.out.println("system zakonczyl dzialanie");
     }
 }
