@@ -17,7 +17,8 @@ public class RectangularMap extends AbstractWorldMap{
         return position.follows(lowerLeft) && position.precedes(upperRight) && super.canMoveTo(position);
     }
 
-    public String toString() {
-        return new MapVisualizer(this).draw(lowerLeft, upperRight);
+    @Override
+    public Boundary getCurrentBounds() {
+        return new Boundary(lowerLeft, upperRight);
     }
 }

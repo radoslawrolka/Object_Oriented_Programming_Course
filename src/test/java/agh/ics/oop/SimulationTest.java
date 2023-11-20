@@ -50,7 +50,7 @@ public class SimulationTest {
 
     @Test
     public void ParseTest() {
-        String[] args = new String[]{"f", "l", "r", "x", "b", "f"};
+        String[] args = new String[]{"f", "l", "r", "b", "f"};
         List<MoveDirection> moves = OptionParser.parse(args);
         Simulation simulation = new Simulation(moves, positions, map);
 

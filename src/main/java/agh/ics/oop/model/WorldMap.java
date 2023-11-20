@@ -43,4 +43,12 @@ public interface WorldMap<T, P> extends MoveValidator<P> {
     T objectAt(P position);
 
     List<T> getElements();
+
+    void addObserver(MapChangeListener observer);
+
+    void removeObserver(MapChangeListener observer);
+
+    void notifyObservers(String message);
+
+    Boundary getCurrentBounds();
 }

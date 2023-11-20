@@ -13,6 +13,8 @@ public class GrassFieldTest {
     Animal[] animals2 = {new Animal(new Vector2d(8, 4)),
             new Animal(new Vector2d(9, 4)),
             new Animal(new Vector2d(4, 4))};
+    Animal[] animals3 = {new Animal(new Vector2d(2, 2)),
+                         new Animal(new Vector2d(2, 2))};
 
     @Test
     public void placeTest() {
@@ -24,6 +26,7 @@ public class GrassFieldTest {
         assertEquals(map.objectAt(new Vector2d(3, 4)), animals[1]);
         assertEquals(map.objectAt(new Vector2d(4, 4)), animals[2]);
         assertEquals(map.objectAt(new Vector2d(5, 5)), animals[3]);
+        assertFalse(map.place(animals3[0]));
     }
 
     @Test
@@ -48,7 +51,6 @@ public class GrassFieldTest {
         assertTrue(map.isOccupied(new Vector2d(8, 4)));
         assertTrue(map.isOccupied(new Vector2d(9, 4)));
         assertTrue(map.isOccupied(new Vector2d(4, 4)));
-        assertFalse(map.isOccupied(new Vector2d(5, 5)));
     }
 
     @Test

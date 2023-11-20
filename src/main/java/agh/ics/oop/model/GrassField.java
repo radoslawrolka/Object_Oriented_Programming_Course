@@ -30,20 +30,20 @@ public class GrassField extends AbstractWorldMap {
     }
 
     @Override
-    public String toString() {
+    public List<WorldElement> getElements() {
+        List<WorldElement> elements = new ArrayList<>(animals.values());
+        elements.addAll(grasses.values());
+        return elements;
+    }
+
+    @Override
+    public Boundary getCurrentBounds() {
         Vector2d ll = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
         Vector2d ur = new Vector2d(Integer.MIN_VALUE, Integer.MIN_VALUE);
         for (Vector2d position : animals.keySet()) {
             ll = ll.lowerLeft(position);
             ur = ur.upperRight(position);
         }
-        return new MapVisualizer(this).draw(ll, ur);
-    }
-
-    @Override
-    public List<WorldElement> getElements() {
-        List<WorldElement> elements = new ArrayList<>(animals.values());
-        elements.addAll(grasses.values());
-        return elements;
+        return new Boundary(ll, ur);
     }
 }
