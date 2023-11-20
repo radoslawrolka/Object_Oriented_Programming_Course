@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class SimulationEngine {
     private final List<Simulation> simulations;
     private final List<Thread> threads = new ArrayList<>();
+    private final ExecutorService executor = Executors.newFixedThreadPool(4);
 
     public SimulationEngine(List<Simulation> simulations) {
         this.simulations = simulations;
@@ -35,10 +37,14 @@ public class SimulationEngine {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                System.out.println("Simulation interrupted");
+                System.out.println("Thread interrupted");
             }
         }
     }
 
-
+    public void runAsyncInThreadPool() {
+        for (Simulation simulation : simulations) {
+            executor.submit(simulation);
+        }
+    }
 }
