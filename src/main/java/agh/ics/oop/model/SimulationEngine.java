@@ -33,18 +33,23 @@ public class SimulationEngine {
     }
 
     public void awaitSimulationsEnd() {
-        for (Thread thread : threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                System.out.println("Thread interrupted");
+        try {
+            if (executor.awaitTermination(10, TimeUnit.SECONDS)) {
+                System.out.println("All simulations finished");
+            } else {
+                System.err.println("Stopping unfinished simulations (>10s)");
+                executor.shutdownNow();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     public void runAsyncInThreadPool() {
         for (Simulation simulation : simulations) {
-            executor.submit(simulation);
+            executor.execute(simulation);
         }
+        executor.shutdown();
+        awaitSimulationsEnd();
     }
 }
