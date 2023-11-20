@@ -7,10 +7,12 @@ public class ConsoleMapDisplay implements MapChangeListener {
 
     @Override
     public void mapChanged(WorldMap worldmap, String message) {
-        System.out.println(message);
-        System.out.println("To był: "+update+" update mapy id: "+worldmap.getId());
-        Boundary bounds = worldmap.getCurrentBounds();
-        System.out.println(new MapVisualizer(worldmap).draw(bounds.lowerLeft(), bounds.upperRight()));
-        update++;
+        synchronized (System.out) {
+            System.out.println(message);
+            System.out.println("To był: "+update+" update mapy id: "+worldmap.getId());
+            Boundary bounds = worldmap.getCurrentBounds();
+            System.out.println(new MapVisualizer(worldmap).draw(bounds.lowerLeft(), bounds.upperRight()));
+            update++;
+        }
     }
 }

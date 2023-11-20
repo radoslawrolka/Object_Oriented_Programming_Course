@@ -27,7 +27,7 @@ public class World {
         Simulation simulation1 = new Simulation(moves1, positions1, map1);
         Simulation simulation2 = new Simulation(moves2, positions2, map2);
         SimulationEngine engine = new SimulationEngine(List.of(simulation1, simulation2));
-        engine.runASync();
+        engine.runAsync();
         System.out.println("system zakonczyl dzialanie");
     }
 }
