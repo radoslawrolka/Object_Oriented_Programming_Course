@@ -17,6 +17,7 @@ public class Simulation {
             Animal animal = new Animal(position);
             if (map.place(animal)) {
                 this.animals.add(animal);
+
             }
         }
     }
