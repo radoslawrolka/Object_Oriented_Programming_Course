@@ -33,6 +33,14 @@ public class SimulationEngine {
     }
 
     public void awaitSimulationsEnd() {
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                System.err.println("Simulation interrupted");
+                e.printStackTrace();
+            }
+        }
         try {
             if (executor.awaitTermination(10, TimeUnit.SECONDS)) {
                 System.out.println("All simulations finished");
