@@ -12,7 +12,8 @@ public class World {
             System.out.print(s+" ");
         }
         System.out.println();
-        //List<MoveDirection> moves = OptionParser.parse(arg);
+        /*
+        List<MoveDirection> moves = OptionParser.parse(arg);
         String[] arg1 = {"f", "f", "r", "f", "f", "f", "f", "f", "f", "f", "f", "f"};
         String[] arg2 = {"f", "b", "r", "f", "f", "l", "f", "r", "l", "f", "f", "f"};
         List<MoveDirection> moves1 = OptionParser.parse(arg1);
@@ -27,21 +28,22 @@ public class World {
         map2.addObserver(display2);
         Simulation simulation1 = new Simulation(moves1, positions1, map1);
         Simulation simulation2 = new Simulation(moves2, positions2, map2);
-
+        */
         List<Simulation> list = new LinkedList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             List<MoveDirection> mov = List.of(MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.FORWARD, MoveDirection.BACKWARD);
             List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
             AbstractWorldMap map = new GrassField(10);
             list.add(new Simulation(mov, pos, map));
             ConsoleMapDisplay dis = new ConsoleMapDisplay();
-            //map.addObserver(dis);
+            map.addObserver(dis);
         }
         SimulationEngine engine = new SimulationEngine(list);
-
         //SimulationEngine engine = new SimulationEngine(List.of(simulation1, simulation2));
-        engine.runAsyncInThreadPool();
-        //engine.runAsync();
+
+        //engine.runSync();
+        //engine.runAsyncInThreadPool();
+        engine.runAsync();
         System.out.println("system zakonczyl dzialanie");
     }
 }
