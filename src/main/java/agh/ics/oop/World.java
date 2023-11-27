@@ -29,13 +29,14 @@ public class World {
         Simulation simulation1 = new Simulation(moves1, positions1, map1);
         Simulation simulation2 = new Simulation(moves2, positions2, map2);
         */
+        ConsoleMapDisplay dis = new ConsoleMapDisplay();
         List<Simulation> list = new LinkedList<>();
         for (int i = 0; i < 100; i++) {
             List<MoveDirection> mov = List.of(MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.FORWARD, MoveDirection.BACKWARD);
             List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
             AbstractWorldMap map = new GrassField(10);
             list.add(new Simulation(mov, pos, map));
-            ConsoleMapDisplay dis = new ConsoleMapDisplay();
+
             map.addObserver(dis);
         }
         SimulationEngine engine = new SimulationEngine(list);
@@ -43,7 +44,7 @@ public class World {
 
         //engine.runSync();
         //engine.runAsyncInThreadPool();
-        engine.runAsync();
+        //engine.runAsync();
         System.out.println("system zakonczyl dzialanie");
     }
 }
