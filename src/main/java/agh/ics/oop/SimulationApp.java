@@ -13,25 +13,12 @@ import java.util.List;
 
 public class SimulationApp extends Application {
     public void start(Stage primaryStage) throws IOException {
-        List<MoveDirection> mov = List.of(MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.FORWARD, MoveDirection.BACKWARD);
-        List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
-        AbstractWorldMap map = new GrassField(10);
-        Simulation simulation = new Simulation(mov, pos, map);
-        ConsoleMapDisplay dis = new ConsoleMapDisplay();
-        map.addObserver(dis);
-        SimulationEngine engine = new SimulationEngine(List.of(simulation));
-
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("simulation.fxml"));
         BorderPane viewRoot = loader.load();
         SimulationPresenter presenter = loader.getController();
 
         configureStage(primaryStage, viewRoot);
-
-        map.addObserver(presenter);
-        presenter.setWorldMap(map);
-        engine.runSync();
         primaryStage.show();
     }
 
