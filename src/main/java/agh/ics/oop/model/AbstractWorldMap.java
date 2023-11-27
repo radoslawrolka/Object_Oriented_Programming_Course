@@ -27,7 +27,7 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
             if (canMoveTo(object.getPosition())) {
                 if (object instanceof Animal) {
                     animals.put(object.getPosition(), (Animal) object);
-                    notifyObservers("Dodano zwierzę na pozycji " + object.getPosition());
+                    notifyObservers("Dodano zwierze na pozycji " + object.getPosition());
                 }
                 return true;
             }
@@ -56,10 +56,10 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
             if (oldPosition != newPosition) {
                 animals.remove(oldPosition);
                 animals.put(newPosition, (Animal) object);
-                notifyObservers("Zwierzę przemieściło się z " + oldPosition + " na " + newPosition);
+                notifyObservers("Zwierze przemiescilo sie z " + oldPosition + " na " + newPosition);
             }
             else if (oldOrientation != ((Animal) object).getOrientation()) {
-                notifyObservers("Zwierzę zmieniło orientację z " + oldOrientation + " na " + ((Animal) object).getOrientation() + " na pozycji " + object.getPosition());
+                notifyObservers("Zwierze zmienilo orientacje z " + oldOrientation + " na " + ((Animal) object).getOrientation() + " na pozycji " + object.getPosition());
             }
         }
     }
