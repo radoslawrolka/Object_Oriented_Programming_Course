@@ -51,4 +51,6 @@ public interface WorldMap<T, P> extends MoveValidator<P> {
     void notifyObservers(String message);
 
     Boundary getCurrentBounds();
+
+    String getId();
 }

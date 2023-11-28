@@ -5,7 +5,7 @@ import agh.ics.oop.model.*;
 import java.util.Collections;
 import java.util.List;
 
-public class Simulation {
+public class Simulation implements Runnable{
     private final List<Animal> animals = new java.util.LinkedList<>();
     private final List<MoveDirection> moves;
     private final WorldMap map;

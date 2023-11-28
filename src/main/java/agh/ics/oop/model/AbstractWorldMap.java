@@ -91,4 +91,8 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
             observer.mapChanged(this, message);
         }
     }
+
+    public String getId() {
+        return Integer.toString(this.hashCode());
+    }
 }
