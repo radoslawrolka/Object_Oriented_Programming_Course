@@ -19,6 +19,7 @@
             <TextField fx:id="moveListTextField" promptText="Enter move list"/>
             <Label fx:id="moveDescriptionLabel" text="Move description will be displayed here" textAlignment="CENTER"/>
             <Button text="Start" onAction="#startSimulation"/>
+            <Button text="New Simulation" onAction="#newGame"/>
         </VBox>
     </bottom>
 </BorderPane>

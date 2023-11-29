@@ -1,8 +1,9 @@
 package agh.ics.oop.presenter;
 
 import agh.ics.oop.Simulation;
+import agh.ics.oop.SimulationApp;
 import agh.ics.oop.model.*;
-import agh.ics.oop.model.util.MapVisualizer;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.scene.control.TextField;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -110,7 +112,6 @@ public class SimulationPresenter implements MapChangeListener {
             clearGrid();
             drawMap();
             moveDescriptionLabel.setText(message);
-            System.out.println(message);
         });
     }
 
@@ -128,5 +129,15 @@ public class SimulationPresenter implements MapChangeListener {
             engine.runSync();
         }).start();
 
+    }
+
+    @FXML
+    private void newGame() {
+        SimulationApp simulationApp = new SimulationApp();
+        try {
+            simulationApp.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
