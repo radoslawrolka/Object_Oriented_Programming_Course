@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SimulationApp extends Application {
     public void start(Stage primaryStage) throws IOException {

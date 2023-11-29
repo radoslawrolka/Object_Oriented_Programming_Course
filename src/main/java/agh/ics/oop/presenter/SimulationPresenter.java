@@ -39,10 +39,11 @@ public class SimulationPresenter implements MapChangeListener {
     }
 
     public void xyLabel(){
-        GridPane.setHalignment(new Label("y/x"), HPos.CENTER);
         mapGrid.getColumnConstraints().add(new ColumnConstraints(width));
         mapGrid.getRowConstraints().add(new RowConstraints(height));
-        mapGrid.add(new Label("y/x"), 0, 0);
+        Label label = new Label("y/x");
+        mapGrid.add(label, 0, 0);
+        GridPane.setHalignment(label, HPos.CENTER);
     }
 
     public void updateBounds(){
@@ -96,6 +97,12 @@ public class SimulationPresenter implements MapChangeListener {
         mapGrid.setGridLinesVisible(true);
     }
 
+    private void clearGrid() {
+        mapGrid.getChildren().retainAll(mapGrid.getChildren().get(0)); // hack to retain visible grid lines
+        mapGrid.getColumnConstraints().clear();
+        mapGrid.getRowConstraints().clear();
+    }
+
     @Override
     public void mapChanged(WorldMap map, String message) {
         setWorldMap(map);
@@ -103,20 +110,15 @@ public class SimulationPresenter implements MapChangeListener {
             clearGrid();
             drawMap();
             moveDescriptionLabel.setText(message);
+            System.out.println(message);
         });
-    }
-
-    private void clearGrid() {
-        mapGrid.getChildren().retainAll(mapGrid.getChildren().get(0)); // hack to retain visible grid lines
-        mapGrid.getColumnConstraints().clear();
-        mapGrid.getRowConstraints().clear();
     }
 
     @FXML
     private void startSimulation() {
         String moveList = moveListTextField.getText();
         List<MoveDirection> mov = OptionParser.parse(moveList.split(" "));
-        List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
+        List<Vector2d> pos = List.of(new Vector2d(5,0), new Vector2d(1,1), new Vector2d(-2,0));
         AbstractWorldMap map = new GrassField(10);
         map.addObserver(this);
         Simulation simulation = new Simulation(mov, pos, map);
