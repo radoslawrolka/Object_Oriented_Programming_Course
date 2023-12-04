@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import javafx.application.Application;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,9 +30,9 @@ public class World {
         Simulation simulation1 = new Simulation(moves1, positions1, map1);
         Simulation simulation2 = new Simulation(moves2, positions2, map2);
         */
-        ConsoleMapDisplay dis = new ConsoleMapDisplay();
+        /*
         List<Simulation> list = new LinkedList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 0; i++) {
             List<MoveDirection> mov = List.of(MoveDirection.LEFT, MoveDirection.RIGHT, MoveDirection.FORWARD, MoveDirection.BACKWARD);
             List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
             AbstractWorldMap map = new GrassField(10);
@@ -43,8 +44,10 @@ public class World {
         //SimulationEngine engine = new SimulationEngine(List.of(simulation1, simulation2));
 
         //engine.runSync();
-        //engine.runAsyncInThreadPool();
+        engine.runAsyncInThreadPool();
         //engine.runAsync();
         System.out.println("system zakonczyl dzialanie");
+        */
+        Application.launch(SimulationApp.class, arg);
     }
 }
