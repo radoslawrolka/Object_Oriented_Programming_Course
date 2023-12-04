@@ -37,7 +37,7 @@ public class World {
             List<Vector2d> pos = List.of(new Vector2d(0,0), new Vector2d(1,0), new Vector2d(2,0));
             AbstractWorldMap map = new GrassField(10);
             list.add(new Simulation(mov, pos, map));
-            ConsoleMapDisplay dis = new ConsoleMapDisplay();
+
             map.addObserver(dis);
         }
         SimulationEngine engine = new SimulationEngine(list);

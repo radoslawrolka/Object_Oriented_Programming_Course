@@ -17,6 +17,7 @@ public class Simulation implements Runnable{
             Animal animal = new Animal(position);
             if (map.place(animal)) {
                 this.animals.add(animal);
+
             }
         }
     }
