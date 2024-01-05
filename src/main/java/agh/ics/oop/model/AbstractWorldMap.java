@@ -95,4 +95,17 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     public String getId() {
         return Integer.toString(this.hashCode());
     }
+
+    public List<WorldElement> getOrderedAnimals() {
+        List<WorldElement> animals = new ArrayList<>(this.animals.values());
+        animals.sort((a1, a2) -> {
+            if (a1.getPosition().getX() == a2.getPosition().getX()) {
+                return Integer.compare(a1.getPosition().getY(), a2.getPosition().getY());
+            }
+            else {
+                return Integer.compare(a1.getPosition().getX(), a2.getPosition().getX());
+            }
+        });
+        return animals;
+    }
 }

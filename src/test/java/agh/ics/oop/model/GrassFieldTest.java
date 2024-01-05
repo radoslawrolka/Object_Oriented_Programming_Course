@@ -79,4 +79,25 @@ public class GrassFieldTest {
         map.move(animals[3], MoveDirection.FORWARD);
         assertEquals(map.objectAt(new Vector2d(5, 6)), animals[3]);
     }
+
+    @Test
+    public void getOrderedAnimalsTest() {
+        AbstractWorldMap map = new GrassField(0);
+        for (Animal animal : animals) {
+            map.place(animal);
+        }
+        assertEquals(map.getOrderedAnimals().get(0), animals[0]);
+        assertEquals(map.getOrderedAnimals().get(1), animals[1]);
+        assertEquals(map.getOrderedAnimals().get(2), animals[2]);
+        assertEquals(map.getOrderedAnimals().get(3), animals[3]);
+
+        animals[0].move(map, MoveDirection.RIGHT);
+        animals[0].move(map, MoveDirection.FORWARD);
+        animals[0].move(map, MoveDirection.FORWARD);
+
+        assertEquals(map.getOrderedAnimals().get(0), animals[1]);
+        assertEquals(map.getOrderedAnimals().get(1), animals[0]);
+        assertEquals(map.getOrderedAnimals().get(2), animals[2]);
+        assertEquals(map.getOrderedAnimals().get(3), animals[3]);
+    }
 }

@@ -53,4 +53,6 @@ public interface WorldMap<T, P> extends MoveValidator<P> {
     Boundary getCurrentBounds();
 
     String getId();
+
+    List<T> getOrderedAnimals();
 }
