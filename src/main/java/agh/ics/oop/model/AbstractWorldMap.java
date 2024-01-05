@@ -2,10 +2,8 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.util.MapVisualizer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
     protected final Map<Vector2d, Animal> animals = new HashMap<>();
@@ -97,15 +95,10 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     }
 
     public List<WorldElement> getOrderedAnimals() {
-        List<WorldElement> animals = new ArrayList<>(this.animals.values());
-        animals.sort((a1, a2) -> {
-            if (a1.getPosition().getX() == a2.getPosition().getX()) {
-                return Integer.compare(a1.getPosition().getY(), a2.getPosition().getY());
-            }
-            else {
-                return Integer.compare(a1.getPosition().getX(), a2.getPosition().getX());
-            }
-        });
-        return animals;
+        return animals.values().stream()
+                .sorted(Comparator
+                        .comparingInt((WorldElement a) -> a.getPosition().getX())
+                        .thenComparingInt(a -> a.getPosition().getY()))
+                .collect(Collectors.toList());
     }
 }
