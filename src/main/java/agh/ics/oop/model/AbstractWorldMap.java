@@ -11,12 +11,13 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(isOccupied(position) && objectAt(position) instanceof Animal);
+        Optional<WorldElement> elementOptional = objectAt(position);
+        return elementOptional.map(element -> !(element instanceof Animal)).orElse(true);
     }
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        return objectAt(position) != null;
+        return objectAt(position).isPresent();
     }
 
     @Override
@@ -40,8 +41,8 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     }
 
     @Override
-    public WorldElement objectAt(Vector2d position) {
-        return animals.get(position);
+    public Optional<WorldElement> objectAt(Vector2d position) {
+        return Optional.ofNullable(animals.get(position));
     }
 
     @Override
