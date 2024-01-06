@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The interface responsible for interacting with the map of the world.
@@ -11,9 +12,9 @@ import java.util.List;
 public interface WorldMap<T, P> extends MoveValidator<P> {
 
     /**
-     * Place a animal on the map.
+     * Place an animal on the map.
      *
-     * @param T The object to place on the map.
+     * @param object The object to place on the map.
      * @return True if the animal was placed. The animal cannot be placed if the move is not valid.
      */
     boolean place(T object);
@@ -40,7 +41,7 @@ public interface WorldMap<T, P> extends MoveValidator<P> {
      * @param position The position of the animal.
      * @return animal or null if the position is not occupied.
      */
-    T objectAt(P position);
+    Optional<T> objectAt(P position);
 
     List<T> getElements();
 
@@ -53,4 +54,6 @@ public interface WorldMap<T, P> extends MoveValidator<P> {
     Boundary getCurrentBounds();
 
     String getId();
+
+    List<T> getOrderedAnimals();
 }

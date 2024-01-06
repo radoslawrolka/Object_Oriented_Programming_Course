@@ -2,10 +2,8 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.util.MapVisualizer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2d> {
     protected final Map<Vector2d, Animal> animals = new HashMap<>();
@@ -13,12 +11,13 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(isOccupied(position) && objectAt(position) instanceof Animal);
+        Optional<WorldElement> elementOptional = objectAt(position);
+        return elementOptional.map(element -> !(element instanceof Animal)).orElse(true);
     }
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        return objectAt(position) != null;
+        return objectAt(position).isPresent();
     }
 
     @Override
@@ -42,8 +41,8 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
     }
 
     @Override
-    public WorldElement objectAt(Vector2d position) {
-        return animals.get(position);
+    public Optional<WorldElement> objectAt(Vector2d position) {
+        return Optional.ofNullable(animals.get(position));
     }
 
     @Override
@@ -94,5 +93,13 @@ public abstract class AbstractWorldMap implements WorldMap<WorldElement, Vector2
 
     public String getId() {
         return Integer.toString(this.hashCode());
+    }
+
+    public List<WorldElement> getOrderedAnimals() {
+        return animals.values().stream()
+                .sorted(Comparator
+                        .comparingInt((WorldElement a) -> a.getPosition().getX())
+                        .thenComparingInt(a -> a.getPosition().getY()))
+                .collect(Collectors.toList());
     }
 }

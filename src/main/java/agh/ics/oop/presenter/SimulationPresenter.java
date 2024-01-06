@@ -122,6 +122,7 @@ public class SimulationPresenter implements MapChangeListener {
         List<Vector2d> pos = List.of(new Vector2d(5,0), new Vector2d(1,1), new Vector2d(-2,0));
         AbstractWorldMap map = new GrassField(10);
         map.addObserver(this);
+        map.addObserver((worldmap, mes) -> System.out.println(worldmap.getId() + ": " + mes));
         Simulation simulation = new Simulation(mov, pos, map);
         SimulationEngine engine = new SimulationEngine(List.of(simulation));
         moveDescriptionLabel.setText("Simulation started with moves: " + moveList);
